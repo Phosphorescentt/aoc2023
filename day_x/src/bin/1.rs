@@ -4,15 +4,16 @@ fn main() {
     println!("result: {}", result);
 }
 
-fn calculate(input: &str) -> String {
-    return "day 1 part 1".to_string();
+fn calculate(input: &str) -> i32 {
+    return 0;
 }
 
 #[cfg(test)]
 mod tests {
+    use super::*;
     #[test]
-    fn it_works() {
-        let result = 2 + 2;
-        assert_eq!(result, 4);
+    fn case1() {
+        let result = calculate("");
+        assert_eq!(result, i32::MAX);
     }
 }
