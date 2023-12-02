@@ -10,14 +10,10 @@ fn calculate(input: &str) -> i32 {
     let games = input.split("\n").collect::<Vec<&str>>();
     let mut valid_games: Vec<i32> = Vec::new();
     for game in games {
-        println!("============ NEW GAME ============");
-        println!("game: {}", game);
         if let Some((game_id_str, rounds)) = game.split_once(": ") {
             if let Some((_, id_str)) = game_id_str.split_once(" ") {
                 if let Ok(id) = id_str.parse::<i32>() {
-                    println!("id: {}", id);
                     let largest_cubes = largest_cubes(rounds);
-                    // println!("max_cubes: {:?}", largest_cubes);
                     let max_red = largest_cubes.get("red").unwrap();
                     let max_green = largest_cubes.get("green").unwrap();
                     let max_blue = largest_cubes.get("blue").unwrap();
@@ -39,12 +35,10 @@ fn calculate(input: &str) -> i32 {
 
 fn largest_cubes(game: &str) -> HashMap<&str, i32> {
     let rounds: Vec<&str> = game.split("; ").collect();
-    println!("rounds: {:?}", rounds);
     let mut max_cubes: HashMap<&str, i32> = HashMap::from([("red", 0), ("green", 0), ("blue", 0)]);
 
     for round in rounds.iter() {
         let cubes: Vec<&str> = round.split(", ").collect();
-        println!("cubes: {:?}", cubes);
         for cube in cubes.iter() {
             if let Some((number_str, colour)) = cube.split_once(" ") {
                 if let Ok(number) = number_str.parse() {
