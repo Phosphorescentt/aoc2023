@@ -43,9 +43,6 @@ fn largest_cubes(game: &str) -> HashMap<&str, i32> {
             if let Some((number_str, colour)) = cube.split_once(" ") {
                 if let Ok(number) = number_str.parse() {
                     if let Some(max_current_colour) = max_cubes.get(colour) {
-                        // println!("number: {}", number);
-                        // println!("colour: {}", colour);
-                        // println!("max_current_colour: {}", number);
                         if number > *max_current_colour {
                             max_cubes.insert(colour, number);
                         }
