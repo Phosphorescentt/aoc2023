@@ -12,20 +12,13 @@ fn calculate(input: &str) -> i32 {
     let mut total = 0;
 
     for (i, row) in rows.iter().enumerate() {
-        dbg!("==================================");
-        dbg!(i);
         let number_infos = get_numbers_info(row);
         for (number_str, start_x, length) in number_infos.iter() {
-            dbg!("##############################################");
-            dbg!(format!("validating {}", number_str));
             if is_engine_part(*start_x as i32, i as i32, *length as i32, &rows) {
                 let number: i32 = number_str.parse().unwrap();
-                dbg!(format!("{} valid!", number));
                 total += number;
             }
-            dbg!("##############################################");
         }
-        dbg!("==================================");
     }
 
     return total;
@@ -103,41 +96,26 @@ fn is_engine_part(start_x: i32, start_y: i32, number_length: i32, full_input: &V
     let height = full_input.len();
     let length = full_input.get(0).unwrap().len();
 
-    if start_y > 0 {
-        let top_row = full_input.get((start_y - 1) as usize).unwrap().to_string();
-        dbg!(top_row);
-    }
-    let mid_row = full_input.get((start_y) as usize).unwrap().to_string();
-    dbg!(mid_row);
-    if (start_y as usize) < height - 1 {
-        let bot_row = full_input.get((start_y + 1) as usize).unwrap().to_string();
-        dbg!(bot_row);
-    }
-
-    dbg!(start_x);
-    dbg!(start_y);
-    dbg!(number_length);
-
     // check start
     if start_x != 0 {
         // check top left
         if start_y > 0 {
             let row = full_input.get((start_y - 1) as usize).unwrap().to_string();
-            if is_identifier(dbg!(&row.chars().nth((start_x - 1) as usize).unwrap())) {
+            if is_identifier(&row.chars().nth((start_x - 1) as usize).unwrap()) {
                 return true;
             }
         }
         // check middle left
         {
             let row = full_input.get(start_y as usize).unwrap().to_string();
-            if is_identifier(dbg!(&row.chars().nth((start_x - 1) as usize).unwrap())) {
+            if is_identifier(&row.chars().nth((start_x - 1) as usize).unwrap()) {
                 return true;
             }
         }
         // check bottom left
         if (start_y as usize) < height - 1 {
             let row = full_input.get((start_y + 1) as usize).unwrap().to_string();
-            if is_identifier(dbg!(&row.chars().nth((start_x - 1) as usize).unwrap())) {
+            if is_identifier(&row.chars().nth((start_x - 1) as usize).unwrap()) {
                 return true;
             }
         }
