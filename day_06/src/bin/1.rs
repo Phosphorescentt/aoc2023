@@ -1,5 +1,3 @@
-use std::iter::Zip;
-
 fn main() {
     let input = include_str!("input.txt");
     let result = calculate(input);
@@ -29,10 +27,6 @@ fn calculate(input: &str) -> i32 {
         .map(|s| s.parse::<i32>().unwrap())
         .collect::<Vec<i32>>();
 
-    // let mut ways_of_winning: i32 = 0;
-    // for (time, distance) in times.iter().zip(distances) {
-    //     let distances = (1..=*time).map(|i| (time - i) * i);
-    // }
     let ways_of_winning: i32 = times
         .iter()
         .zip(distances)
